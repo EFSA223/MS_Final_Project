@@ -1,2 +1,5 @@
-# MS_Final_Project
-Final project for the New Maps Plus MS
+# Final Project for New maps Plus MS
+
+Etienne Sambo,
+January - Juny 2020
+
