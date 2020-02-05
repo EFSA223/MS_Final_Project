@@ -8,7 +8,7 @@ I have selected a number of projects that have to do with my island Curacao. The
 With these digital Maps I want the majority of the population to have the same information at their disposal.
 
 ## 1. Public transportation
-I want to design a card that is accessible to everyone. Firstly for the residents of Curacao and secondly all the tourists who visit the island and want to take public transport and want to know that it is on the right route.
+I want to design a map that is accessible to everyone. Firstly for the residents of Curacao and secondly all the tourists who visit the island and want to take public transport and want to know that it is on the right route.
 
 
 ## 2. Architectural Walking Guide
