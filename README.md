@@ -32,4 +32,16 @@ Willemstad, Curaçao has been on the World Heritage List since December 1997. Th
 - Show different picture of the monuments
 - Give information ot the monuments
 
+
 ## 3. Traffic accidents from Curaçao or The Netherlands
+Oefff, car accidents is a problem in every city. Minor accidents with material damage to major accidents with fatal consequences. Everyone wants a safe traffic. I want to design and publish a map that displays these traffic accidents so that the public can get to know where the the unsafe places are.
+This can be a build on my last [Map675 project](https://efsa223.github.io/Vehicle_Crashes/), I can add more functionality.
+
+### Challenges
+- Change location use different data from [Curaçao](https://www.facebook.com/forensyscuracao/) or [The Netherlands](http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4gqrs90k-vobr-5t59-x726-4x2unrs1vawz).
+- Filter on categorie, minor to fatal accident
+- Add time slider to go true the years
+- Use of Mapbox GL JS
+
+
+## 4. alternative assignment??
