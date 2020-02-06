@@ -9,8 +9,8 @@ With these digital Maps I want the majority of the population to have the same i
 
 ## 1. Public transportation
 I want to design a map that is accessible to everyone. Firstly for the residents of Curaçao and secondly all the tourists who visit the island and want to take public transport and want to know that it is on the right route.
-When I search the company's [website](http://autobusbedrijf.org/), I get a lot of information but there is no map. See some comments from tourists on [tripadvisor](https://www.tripadvisor.com/ShowTopic-g147277-i583-k9966587-Map_with_bus_routes-Curacao.html). a comment on tripadvisor leads me to this [Map](https://16byte.de/abc-route-map/).
-I think that this topic will be a good challenge.
+When I search the company's [website](http://autobusbedrijf.org/), I get a lot of information but there is no map. See some comments from tourists on [tripadvisor](https://www.tripadvisor.com/ShowTopic-g147277-i583-k9966587-Map_with_bus_routes-Curacao.html). A comment on tripadvisor leads me to this [Map](https://16byte.de/abc-route-map/).
+I think that this will be a good challenge, although the company is working on a route planner.
 
 ### Challenges
 - Search for data (routes, busstops, POI, prices, ect.)
@@ -21,8 +21,15 @@ I think that this topic will be a good challenge.
 - Give more [information](http://autobusbedrijf.org/media/2020/02/orario-salida-rutanan.pdf) abbout the route and prices
 - Show some point of interest
 
+
 ## 2. Architectural Walking Guide
+Willemstad, Curaçao has been on the World Heritage List since December 1997. There is an [analogue guide](https://www.curacaoinfo.org/media/uploads/2015/07/15/CTB_Walkingguide_2015.pdf) of the city with walking routes to admire the architecture. I like to make this guide digital together with all the others [monuments (Lánthùisnan)](https://monumentenzorg.cw/lanthuisnan-di-korsou/) on the island so that it becomes more accessible to more people.
 
-
+### Challenges
+- Digitaze the Walking route
+- Higlight routes
+- Navigate the route
+- Show different picture of the monuments
+- Give information ot the monuments
 
 ## 3. Traffic accidents from Curaçao or The Netherlands
