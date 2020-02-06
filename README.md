@@ -9,7 +9,7 @@ With these digital Maps I want the majority of the population to have the same i
 
 ## 1. Public transportation
 I want to design a map that is accessible to everyone. Firstly for the residents of Curaçao and secondly all the tourists who visit the island and want to take public transport and want to know that it is on the right route.
-When I search the company's [website](http://autobusbedrijf.org/), I get a lot of information but there is no map. See some comments from tourists on [tripadvisor](https://www.tripadvisor.com/ShowTopic-g147277-i583-k9966587-Map_with_bus_routes-Curacao.html). Search online I found this [Map](https://16byte.de/abc-route-map/).
+When I search the company's [website](http://autobusbedrijf.org/), I get a lot of information but there is no map. See some comments from tourists on [tripadvisor](https://www.tripadvisor.com/ShowTopic-g147277-i583-k9966587-Map_with_bus_routes-Curacao.html). a comment on tripadvisor leads me to this [Map](https://16byte.de/abc-route-map/).
 I think that this topic will be a good challenge.
 
 ### Challenges
