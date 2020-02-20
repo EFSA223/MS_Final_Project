@@ -17,6 +17,7 @@ I also want to display various statistical information from the last 10 years if
 - Possibilities to select and highlight Routes
 - Simulate navigation
 - Trip Planner ([Routing](https://www.liedman.net/leaflet-routing-machine/tutorials/basic-usage/) Optional)
+- slider for information of each year
 
 
 ## Data
