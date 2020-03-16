@@ -8,23 +8,29 @@ Maybe this can be a build on my last [Map675 project](https://efsa223.github.io/
 
 ## Map realization
 - Show all accident on map
-  - Categorize this per damages
+  - Categorize per damages
   - and nature of the Accidents
 - Slider, Let user swiftly slide through the years
 - Overlay with other socio-demographic Data
   - population
-  - selling cars
-
+  - Total road vehicles
+  - alarms from the fire brigade
 
 ## Data
+First I want to create a Public Transport map of my island but realty is that there is no structure data available.
+I had to switch to my thirt topic, the "Traffic Accident" of The Netherlands.
+The file Accidents registered in the Netherlands is a file with the accident reports of the police linked to the digital road network. This data is intended to perform various road safety analyzes and made available by [Bestand geRegistreerde Ongevallen Nederland (BRON)](http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4gqrs90k-vobr-5t59-x726-4x2unrs1vawz). I will use the data: "Traffic accidents - Netherlands 2009-2018".
+
+Overlay data options:
+- [Population](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/70072ned/table?ts=1584238008129)
+- [Alarms from the fire brigade](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83122NED/table?ts=1584324297118)
+- [Total road vehicles](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/7374hvv/table?fromstatweb)
 
 
 
-
-- Wat is de officiële definitie van een verkeersdode?
-
+## Challenges
 - killed and seriously injured in traffic
 - fatalities by mode of transport
-- road deaths by province per 100 thousand inhabitants
+- road deaths by province inhabitants
 - How has the number of road deaths in the Netherlands developed over the past ten years?
 - What is the risk per transport mode of dying in traffic?
