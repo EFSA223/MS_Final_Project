@@ -16,6 +16,13 @@ Maybe this can be a build on my last [Map675 project](https://efsa223.github.io/
   - Total road vehicles
   - alarms from the fire brigade
 
+## Challenges
+  - killed and seriously injured in traffic
+  - fatalities by mode of transport
+  - road deaths by province inhabitants
+  - How has the number of road deaths in the Netherlands developed over the past ten years?
+  - What is the risk per transport mode of dying in traffic?
+
 ## Data
 First I want to create a Public Transport map of my island but realty is that there is no structure data available.
 I had to switch to my thirt topic, the "Traffic Accident" of The Netherlands.
@@ -25,12 +32,7 @@ Overlay data options:
 - [Population](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/70072ned/table?ts=1584238008129)
 - [Alarms from the fire brigade](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/83122NED/table?ts=1584324297118)
 - [Total road vehicles](https://opendata.cbs.nl/statline/#/CBS/nl/dataset/7374hvv/table?fromstatweb)
+- Tne Netherlands administrative areas
 
-
-
-## Challenges
-- killed and seriously injured in traffic
-- fatalities by mode of transport
-- road deaths by province inhabitants
-- How has the number of road deaths in the Netherlands developed over the past ten years?
-- What is the risk per transport mode of dying in traffic?
+I'm working with ratio data.
+The main geometry I'm going to use in point that shows the location of the collision. I also use polygons for the administrative areas.
