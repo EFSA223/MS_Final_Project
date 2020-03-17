@@ -35,4 +35,4 @@ Overlay data options:
 - Tne Netherlands administrative areas
 
 I'm working with ratio data.
-The main geometry I'm going to use in point that shows the location of the collision. I also use polygons for the administrative areas.
+The main geometry I'm going to use is points that shows the location of the collision, and also polygons for the administrative areas.
