@@ -1,6 +1,6 @@
 # The Netherlands Interactive Traffic Accidents Map.
 
-Traffic accidents is a problem in every city. Minor accidents with material damage to major accidents with fatal consequences. According to the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/road-traffic-injuries), 1.35 million people die from road accidents every year. Everyone wants a safe traffic.
+Traffic accidents is a problem in every city. Minor accidents with material damage to major accidents with fatal consequences. According to the [World Health Organization (WHO)](https://www.who.int/news-room/fact-sheets/detail/road-traffic-injuries), approximately 1.35 million people die from road accidents every year. In the Netherlands there are approximately xxx traffic accidents and in Curacao 12750. Everyone wants a safe traffic, to realize this everybody has to be informed and I want to do this through a webmap.
 
 I want to design and publish a map that depicts these road accidents so that the public can learn how many tragic accidents happen every day on roads they use and hope that everyone will pay more attention in traffic.
 
