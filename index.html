@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>MS-Final Assignment</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link href="https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">  <!-- symbols in sidebar -->
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+    <link rel="stylesheet" href="../libs/css/leaflet-sidebar.css" />
+    <!-- Marker Clusters -->
+    <link rel="stylesheet" href="../libs/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="../libs/MarkerCluster.css">
+    <!-- Sidebar V-2 -->
+    <link rel="stylesheet" href="libs/css/leaflet-sidebar.css" />
+
+    <style>
+      body {
+        /* font-family: sans-serif; */
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body, #map {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <!-- <div id="map"></div> -->
+
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
+
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Road Crashes Utrecht, The Netherland
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+
+                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                   sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                   sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                   no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                   sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                   sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                   no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                  sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+                  sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                  no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+            </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="map" class="sidebar-map"></div>
+
+    <!--JQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!--MapBox-->
+    <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
+    <!--D3-->
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <!--Sidebar-->
+    <script src="../libs/js/leaflet-sidebar.js"></script>
+
+
+    <!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script> -->
+    <!-- <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script> -->
+    <!-- <script src="https://d3js.org/d3-dsv.v1.min.js"></script> -->
+    <!-- <script src="https://d3js.org/d3-fetch.v1.min.js"></script> -->
+    <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/topojson@3"></script> -->
+    <!-- <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script> -->
+    <!-- <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script> -->
+    
+    
+    <script>
+
+      var map = L.map("map", {
+        zoomSnap: 0.1,
+        // center: [52.12, 4.90],
+        //center: [52.109582, 5.18955], //Nederland
+        center: [52.111, 5.105], //Utrecht
+        zoom: 11
+      }); 
+
+      // mapbox access token
+      var accessToken = "pk.eyJ1IjoiZWYtc2FtYm8iLCJhIjoiY2syczR4eWtuMDZjcDNjbzM0eGhoaHB0MyJ9.3-yTH_cLheshPQa_n8zHgw";
+
+      // add mapbox tile layers using access token
+      L.tileLayer(
+        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=" + accessToken,
+        {
+          attribution:
+            'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 17,
+          id: "mapbox.light",
+          accessToken: accessToken
+        }
+      ).addTo(map);
+
+        // load Road Crashes geojson file and call function to add data to map
+        $.getJSON("data/clean/verkeersOng_UTR_2016-2018_5.geojson", function (data) {
+            drawMap(data);
+        });
+
+
+        function drawMap(data) {
+        // create a Leaflet GeoJSON object using the data and add it to the map
+          var geojsonMarkerOptions = {
+            radius: 2,
+            fillColor: "#142850",
+            color: "#cccccc",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+          };
+          const crashes = L.geoJson(data,{
+            pointToLayer:function(feature,latlng){
+              // if feature.properties.amenity = "fire_station";
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+            }
+          }).addTo(map);
+
+          // console.log(crashes); 
+
+          // Add sidebar to the map!
+          var sidebar = L.control.sidebar('sidebar').addTo(map); 
+
+          // loop through all the crashes
+          crashes.eachLayer(function (layer) {
+            // access the name for each
+            var popup=
+              "<p>"
+                     + //"Informatie:"+"<br>"+
+                    // "<ul>"+
+                          "<li>Year: "+layer.feature.properties.JAAR_VKL+"</li>"+
+                          "<li>Provincie: "+layer.feature.properties.PVE_CODE+"</li>"+
+                          "<li>Categorie: "+layer.feature.properties.AP3_CODE+"</li>"+
+                    // "</ul>"+
+              "</p>";
+
+            // bind that name to a tooltip
+            layer.bindTooltip(popup);
+
+          });
+
+        // function drawMap(data) {
+        //     // convert the TopoJSON to GeoJSON
+        //     var geojson = topojson.feature(data, data.objects.cb_2018_us_county_20m);
+
+        //     // add to our map
+        //     var counties = L.geoJson(geojson, {
+        //         style: function(feature, layer) {
+        //         return {
+        //             color: "white",
+        //             fillColor: "#448ee4",
+        //             fillOpacity: ".7",
+        //             weight: 1
+        //         };
+        //         }
+        //     }).addTo(map);
+
+        //     // listen for a selection and then invoke the callback function
+        //     geoCoderControl.on("select", function(result) {
+              
+        //         // add a marker on the map
+        //         var searchResult = L.geoJson(result.feature).addTo(map);
+
+        //         // add and open tooltip
+        //         searchResult.bindTooltip(result.feature.place_name).openTooltip();
+
+        //         //console.log(result);
+        //         geoCoderControl.on('select');
+
+        //         // loop through the county layers
+        //         counties.eachLayer(function(layer) {
+        //         // convert Leaflet layer to geojson with Leaflet toGeoJSON() method
+        //         var polyFeature = layer.toGeoJSON();
+
+        //         // if the result's feature is inside the polygon
+        //         if (turf.booleanPointInPolygon(result.feature, polyFeature)) {
+        //             // adjust the map pan/zoom to the county layer bounds
+        //             map.flyToBounds(layer.getBounds(), {
+        //             padding: [20, 20]
+        //             });
+
+        //             // when the map is zooming on the flyTo
+        //             map.on("zoomend", function() {
+        //                 layer
+        //                     .setStyle({
+        //                         color: "#f0dc00",
+        //                         fill: false,
+        //                         weight: "3"
+        //                     })
+        //                     .bringToFront();
+        //                     //console.log(polyFeature);
+        //                 findDistanceToCentroid(polyFeature, result.feature);
+        //             });
+        //         }
+        //         });
+        //     });
+        // } // end drawMap
+
+        // function findDistanceToCentroid(countyPolygon, searchedFeature) {
+        //   // get the GeoJSON feature of the Polygon's center
+        //   var massCenter = turf.centerOfMass(countyPolygon);
+        //   // add that GeoJSON feature to the map as a Leaflet marker
+        //   var mc = L.geoJson(massCenter).addTo(map);
+        //   // options for the distance method
+        //   var options = {
+        //     units: 'miles'
+        //   };
+        //   // calculate distance between the points
+        //   var distance = turf.distance(massCenter, searchedFeature, options);
+        //   // you know have distance here
+        //   console.log(distance);
+        //   mc.bindTooltip("distance is " + distance + " miles from location").openTooltip();
+        //   // 
+        // };
+
+
+
+
+        };
+
+    </script>
+  </body>
+</html>

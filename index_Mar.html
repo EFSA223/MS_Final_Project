@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>CLUSTER Ms-Final Assignment</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link href="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.css" rel="stylesheet" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/leaflet-sidebar.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    
+
+    <style>
+      body {
+        /* font-family: sans-serif; */
+        margin: 0;
+        padding: 0;
+      }
+
+      html, body, #map {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+      }
+
+      /* .lorem {
+            font-style: italic;
+            color: #AAA;
+        } */
+
+    </style>
+  </head>
+
+  <body>
+    <!-- <div id="map"></div> -->
+
+    <div id="sidebar" class="sidebar collapsed">
+        <!-- Nav tabs -->
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <!-- <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li> -->
+            </ul>
+
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Road Crashes Netherland
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
+                </h1>
+
+                <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+                <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+            </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+        </div>
+    </div>
+
+    <div id="map" class="sidebar-map"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script> -->
+    <script src='https://api.mapbox.com/mapbox.js/v3.2.0/mapbox.js'></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <script src="https://api.mapbox.com/mapbox.js/v3.1.1/mapbox.js"></script>
+    <script src="https://d3js.org/d3-fetch.v1.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <!-- <script src="../libs/js/leaflet-sidebar.js"></script> -->
+    
+    <script>
+
+      var map = L.map("map", {
+        zoomSnap: 0.1,
+        // center: [52.12, 4.90],
+        //center: [52.109582, 5.18955], //Nederland
+        center: [52.098, 5.076], //Utrecht
+        zoom: 10.5
+      });
+
+      // var map = L.map('map');
+      //   map.setView([52.12, 4.90], 8);
+
+      //Add sidebar to the map!
+      //var sidebar = L.control.sidebar('sidebar').addTo(map); 
+      // var marker = L.marker([51.2, 7]).addTo(map);  
+          
+
+      // mapbox access token
+      var accessToken = "pk.eyJ1IjoiZWYtc2FtYm8iLCJhIjoiY2syczR4eWtuMDZjcDNjbzM0eGhoaHB0MyJ9.3-yTH_cLheshPQa_n8zHgw";
+
+      // add mapbox tile layers using access token
+      L.tileLayer(
+        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=" + accessToken,
+        {
+          attribution:
+            'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 17,
+          id: "mapbox.light",
+          accessToken: accessToken
+        }
+      ).addTo(map);
+
+        // load Road Crashes geojson file and call function to add data to map
+        $.getJSON("data/clean/verkeersOng_UTR_2016-2018_5.geojson", function (data1) {
+            drawMap(data1);
+        });
+
+
+        function drawMap(data1) {
+        // create a Leaflet GeoJSON object using the data and add it to the map
+          var geojsonMarkerOptions = {
+            radius: 2,
+            fillColor: "#16fc1e",
+            color: "#cccccc",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+          };
+          const listing = L.geoJson(data1,{
+            pointToLayer:function(feature,latlng){
+              // if feature.properties.amenity = "fire_station";
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+            }
+          }).addTo(map);
+
+          console.log(listing); 
+
+          //Add sidebar to the map!
+          var sidebar = L.control.sidebar('sidebar').addTo(map); 
+
+          //var marker = L.marker([52.12, 4.90]).addTo(map);
+          // var marker = L.marker([52.091, 5.081]).addTo(map);
+          // var marker = L.marker([52.03822, 5.081]).addTo(map);
+
+          // loop through all the listing
+          listing.eachLayer(function (layer) {
+            // access the name for each
+            var popup=
+              "<p>"
+                     + //"Informatie:"+"<br>"+
+                    // "<ul>"+
+                          "<li>Year: "+layer.feature.properties.JAAR_VKL+"</li>"+
+                          "<li>Provincie: "+layer.feature.properties.PVE_CODE+"</li>"+
+                          "<li>Categorie: "+layer.feature.properties.AP3_CODE+"</li>"+
+                    // "</ul>"+
+              "</p>";
+
+            // bind that name to a tooltip
+            layer.bindTooltip(popup);
+
+          });
+
+        };
+
+    </script>
+  </body>
+</html>
