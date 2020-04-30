@@ -150,6 +150,27 @@
             drawMap(data);
         });
 
+        // =====
+
+        // var hydroLayer = L.geoJson(plants, {
+        //   pointToLayer: function(feature,latlng) {
+        //     return L.circleMarker(latlng, commonStyles);
+        //   },
+        //   filter: function(feature) {
+        //     if(feature.properties.fuel_source.Hydro) {
+        //       return feature;
+        //     }
+        //   },
+        //   style: function(feature) {
+        //     return {
+        //       color: '#1f78b4',
+        //       fillColor: '#1f78b4',
+        //       radius: getRadius(feature.properties.fuel_source.Hydro)
+        //     }
+        //   }
+        // }).addTo(map);
+
+        // =====
 
         function drawMap(data) {
         // create a Leaflet GeoJSON object using the data and add it to the map
@@ -161,20 +182,75 @@
             opacity: 1,
             fillOpacity: 0.8
           };
-          const crashes = L.geoJson(data,{
-            pointToLayer:function(feature,latlng){
-              // if feature.properties.amenity = "fire_station";
+
+          var schade = L.geoJson(data, {
+            pointToLayer: function(feature,latlng){
               return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+            filter: function(feature) {
+              if(feature.properties.AP3_CODE=="UMS") {
+                return feature;
+              }
+              console.log(feature);
+            },
+            style: function(feature) {
+              return {
+                radius: 2,
+                color: '#1f78b4',
+                fillColor: '#009933',
+                //radius: getRadius(feature.properties.fuel_source.Hydro)
+              }
             }
           }).addTo(map);
 
-          // console.log(crashes); 
+          var letsels = L.geoJson(data, {
+            pointToLayer: function(feature2,latlng){
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+            filter: function(feature2) {
+              if(feature2.properties.AP3_CODE=="LET") {
+                return feature2;
+              }
+              console.log(feature2);
+            },
+            style: function(feature2) {
+              return {
+                radius: 3,
+                color: '#1f78b4',
+                fillColor: '#3333ff',
+                //radius: getRadius(feature.properties.fuel_source.Hydro)
+              }
+            }
+          }).addTo(map);
+
+          var fatalies = L.geoJson(data, {
+            pointToLayer: function(feature3,latlng){
+              return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+            filter: function(feature3) {
+              if(feature3.properties.AP3_CODE=="DOD") {
+                return feature3;
+              }
+              console.log(feature3);
+            },
+            style: function(feature3) {
+              return {
+                radius: 5,
+                color: '#1f78b4',
+                fillColor: '#ff0000',
+                //radius: getRadius(feature.properties.fuel_source.Hydro)
+              }
+            }
+          }).addTo(map);
+
+          // console.log(data);
+          // console.log(fatalies); 
 
           // Add sidebar to the map!
           var sidebar = L.control.sidebar('sidebar').addTo(map); 
 
           // loop through all the crashes
-          crashes.eachLayer(function (layer) {
+          fatalies.eachLayer(function (layer) {
             // access the name for each
             var popup=
               "<p>"
