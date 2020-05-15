@@ -107,6 +107,15 @@
 
     <div id="map" class="sidebar-map"></div>
 
+    <!-- <select id="d3-dropdown">
+        <option value="first">First</option>
+        <option value="second">Second</option>
+        <option value="third">Third</option>
+        <option value="forth">Forth</option>
+      </select>
+      
+      <p id="selected-dropdown"></p> -->
+    
     <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!--MapBox-->
@@ -129,27 +138,36 @@
     
     <script>
 
+      // d3.select("#selected-dropdown").text("first");
+
+      // d3.select("select")
+      //   .on("change",function(d){
+      //     var selected = d3.select("#d3-dropdown").node().value;
+      //     console.log( selected );
+      //     d3.select("#selected-dropdown").text(selected);
+      // })
+
       var iconA = L.icon({
             iconUrl: 'icons/Stop1NormalRed.png'
              , iconSize: [10, 10], // size of the icon 
              //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
              popupAnchor: [0, 0]
                 // point from which the popup should open relative to the iconAnchor 
-      });
-      var iconB = L.icon({
-          iconUrl: 'icons/Stop1NormalBlue.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
-      });
-      var iconC = L.icon({
-          iconUrl: 'icons/Stop1Normal.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
-      });
+        });
+        var iconB = L.icon({
+            iconUrl: 'icons/Stop1NormalBlue.png'
+             , iconSize: [10, 10], // size of the icon 
+             //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
+             popupAnchor: [0, 0]
+                // point from which the popup should open relative to the iconAnchor 
+        });
+        var iconC = L.icon({
+            iconUrl: 'icons/Stop1Normal.png'
+             , iconSize: [10, 10], // size of the icon 
+             //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
+             popupAnchor: [0, 0]
+                // point from which the popup should open relative to the iconAnchor 
+        });
 
       var map = L.map("map", {
         zoomSnap: 0.1,
@@ -188,6 +206,8 @@
             },
             onEachFeature : function(feature, layer) {
             var countyName = feature.properties.NAME_2;
+            //var rentPrice = feature.properties.RENT;
+            //var rentTip = "<b>" + countyName + "</b><br> average rent: $" + rentPrice;
             layer.bindTooltip(countyName);
             layer.on({
                 click: zoomToFeature
@@ -213,9 +233,11 @@
             fillOpacity: 0.8
           };
 
+console.log(data);
           dataCluster(data);
+          //addFilter(yearData, data);
 
-          //===== Filter per Year!!!
+//===== Filter per Year!!!
           var schade = L.geoJson(data, {
             pointToLayer: function(feature,latlng){
               return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -275,8 +297,8 @@
               }
             }
           })//.addTo(map);
-
-          //===== Filter pet type accident
+//=====
+//===== Filter pet type accident
 
           var schade = L.geoJson(data, {
             pointToLayer: function(feature,latlng){
@@ -338,6 +360,9 @@
             }
           })//.addTo(map);
 
+          // // console.log(data);
+          // console.log(fatalies); 
+
           // Add sidebar to the map!
           var sidebar = L.control.sidebar('sidebar').addTo(map); 
 
@@ -353,8 +378,10 @@
                           "<li>Categorie: "+layer.feature.properties.AP3_CODE+"</li>"+
                     // "</ul>"+
               "</p>";
+
             // bind that name to a tooltip
-            layer//.bindTooltip(popup);
+            layer.bindTooltip(popup);
+
           });
 
         };
@@ -367,22 +394,30 @@
               var cat =  feature.properties.AP3_CODE 
               if (cat =="DOD") { 
                   marker = L.marker([coords[1], coords[0]], {
-                    icon : iconA
+//==
+                  icon : iconA
+//==
                   });
               }
               else if (cat =="LET") {
-                  marker = L.marker([coords[1], coords[0]], {
+                marker = L.marker([coords[1], coords[0]], {
+  //==
                     icon : iconB
-                  });
+  //==
+                    });
               }
               else {
-                  marker = L.marker([coords[1], coords[0]], {
+                marker = L.marker([coords[1], coords[0]], {
+  //==
                     icon : iconC
-                  });
+  //==
+                    });
               };
               marker.bindTooltip("YEAR: " + feature.properties.JAAR_VKL);         // bind a tooltip to the marker
               markers.addLayer(marker);  
-              //console.log(cat);                                        // add the marker to the markerClusterGroup
+              //console.log(marker); 
+              //console.log(accident);
+              console.log(cat);                                        // add the marker to the markerClusterGroup
           });
           map.addLayer(markers);                                                // add the markerClusterGroup to the map
         };
@@ -390,6 +425,19 @@
         function zoomToFeature(e) {
           map.fitBounds(e.target.getBounds());
         };
+
+        // function addFilter(yearData, data) {
+        //   var dropdown = d3.select('#map')
+        //     .append('select')  // append a new select element
+        //     .attr('class', 'filter')  // add a class name
+        //   var uniqueTypes = ["All facilities"];
+        //   yearData.forEach(function (facility) {y
+        //     if (!uniqueTypes.includes(facility.Industry_Type)) uniqueTypes.push(facility.JAAR_VKL)
+        //   })
+        //   uniqueTypes.sort();
+        //   // ["All facilities", "Chemicals", "Metals", "Minerals", "Other", "Petroleum and Natural Gas Systems", "Power Plants", "Waste"]
+        //   console.log(uniqueTypes)
+        // }
 
     </script>
   </body>

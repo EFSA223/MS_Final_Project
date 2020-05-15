@@ -35,11 +35,42 @@
         bottom: 0;
       }
 
-      .filter {
+      /* Split the screen in half */
+      .split {
+        height: 100%;
+        width: 50%;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+        padding-top: 20px;
+      }
+
+      /* Control the left side */
+      .left {
+        left: 0;
+        background-color: rgb(202, 221, 218);
+      }
+
+      /* Control the right side */
+      .right {
+        right: 0;
+        background-color: rgb(195, 211, 221);
+      }
+
+      /* If you want the content centered horizontally and vertically */
+      .centered {
         position: absolute;
-        right: 48px;
-        width: 260px;
-        font-size: 1.3em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+      }
+
+      /* Style the image inside the centered container, if needed */
+      .centered img {
+        width: 150px;
+        border-radius: 50%;
       }
 
     </style>
@@ -47,6 +78,23 @@
 
   <body>
     <!-- <div id="map"></div> -->
+
+    <div class="split left">
+        <div id="map">
+          <!-- <img src="img_avatar2.png" alt="Avatar woman">
+          <h2>Jane Flex</h2>
+          <p>Some text.</p> -->
+        </div>
+      </div>
+      
+      <div class="split right">
+        <div id="map">
+          <!-- <img src="img_avatar.png" alt="Avatar man">
+          <h2>John Doe</h2>
+          <p>Some text here too.</p> -->
+        </div>
+      </div>
+
 
     <div id="sidebar" class="sidebar collapsed">
         <!-- Nav tabs -->
@@ -106,6 +154,7 @@
     </div>
 
     <div id="map" class="sidebar-map"></div>
+    <div id="map" class="sidebar-map"></div>
 
     <!--JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -129,41 +178,27 @@
     
     <script>
 
-      var iconA = L.icon({
-            iconUrl: 'icons/Stop1NormalRed.png'
-             , iconSize: [10, 10], // size of the icon 
-             //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-             popupAnchor: [0, 0]
-                // point from which the popup should open relative to the iconAnchor 
-      });
-      var iconB = L.icon({
-          iconUrl: 'icons/Stop1NormalBlue.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
-      });
-      var iconC = L.icon({
-          iconUrl: 'icons/Stop1Normal.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
-      });
+      var map = L.map("map", {
+        zoomSnap: 0.1,
+        center: [52.119582, 5.19955], //Nederland
+        zoom: 7.5
+      }); 
 
       var map = L.map("map", {
         zoomSnap: 0.1,
-        // center: [52.12, 4.90],
-        // center: [52.119582, 5.19955], //Nederland
-        center: [52.119, 5.197], //Utrecht
-        zoom: 11
-      }); 
+        center: [52.119582, 5.19955], //Nederland
+        zoom: 7.5,
+        zoomControl: false
+      });
+
+      // map.sync(map);
+      // map.sync(map);
 
       // mapbox access token
       var accessToken = "pk.eyJ1IjoiZWYtc2FtYm8iLCJhIjoiY2syczR4eWtuMDZjcDNjbzM0eGhoaHB0MyJ9.3-yTH_cLheshPQa_n8zHgw";
 
       // add mapbox tile layers using access token
-      L.tileLayer(
+      var layer = L.tileLayer(
         "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=" + accessToken,
         {
           attribution:
@@ -174,6 +209,16 @@
         }
       ).addTo(map);
 
+      var layer2 = L.tileLayer(
+        "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=" + accessToken,
+        {
+          attribution:
+            'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+          maxZoom: 20,
+          id: "mapbox.light",
+          accessToken: accessToken
+        }
+      ).addTo(map);
 
         // load Road Crashes geojson file and call function to add data to map
         $.getJSON("data/clean/gemeenten_utrecht_15.geojson", function (dataPoly) {
@@ -188,6 +233,8 @@
             },
             onEachFeature : function(feature, layer) {
             var countyName = feature.properties.NAME_2;
+            //var rentPrice = feature.properties.RENT;
+            //var rentTip = "<b>" + countyName + "</b><br> average rent: $" + rentPrice;
             layer.bindTooltip(countyName);
             layer.on({
                 click: zoomToFeature
@@ -203,188 +250,9 @@
         });
 
         function drawMap(data) {
-        // create a Leaflet GeoJSON object using the data and add it to the map
-          var geojsonMarkerOptions = {
-            radius: 2,
-            fillColor: "#142850",
-            color: "#cccccc",
-            weight: 1,
-            opacity: 1,
-            fillOpacity: 0.8
-          };
-
-          dataCluster(data);
-
-          //===== Filter per Year!!!
-          var schade = L.geoJson(data, {
-            pointToLayer: function(feature,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature) {
-              if(feature.properties.JAAR_VKL==2016) {
-                return feature;
-              }
-              //console.log(feature);
-            },
-            style: function(feature) {
-              return {
-                radius: 2,
-                color: '#1f78b4',
-                fillColor: '#009933',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
-          var schade = L.geoJson(data, {
-            pointToLayer: function(feature,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature) {
-              if(feature.properties.JAAR_VKL==2017) {
-                return feature;
-              }
-              //console.log(feature);
-            },
-            style: function(feature) {
-              return {
-                radius: 2,
-                color: '#1f78b4',
-                fillColor: '#3333ff',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
-          var schade = L.geoJson(data, {
-            pointToLayer: function(feature,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature) {
-              if(feature.properties.JAAR_VKL==2018) {
-                return feature;
-              }
-              //console.log(feature);
-            },
-            style: function(feature) {
-              return {
-                radius: 2,
-                color: '#1f78b4',
-                fillColor: '#ff0000',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
-          //===== Filter pet type accident
-
-          var schade = L.geoJson(data, {
-            pointToLayer: function(feature,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature) {
-              if(feature.properties.AP3_CODE=="UMS") {
-                return feature;
-              }
-              //console.log(feature);
-            },
-            style: function(feature) {
-              return {
-                radius: 2,
-                color: '#1f78b4',
-                fillColor: '#009933',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
-          var letsels = L.geoJson(data, {
-            pointToLayer: function(feature2,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature2) {
-              if(feature2.properties.AP3_CODE=="LET") {
-                return feature2;
-              }
-              //console.log(feature2);
-            },
-            style: function(feature2) {
-              return {
-                radius: 3,
-                color: '#1f78b4',
-                fillColor: '#3333ff',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
-          var fatalies = L.geoJson(data, {
-            pointToLayer: function(feature3,latlng){
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-            },
-            filter: function(feature3) {
-              if(feature3.properties.AP3_CODE=="DOD") {
-                return feature3;
-              }
-              //console.log(feature3);
-            },
-            style: function(feature3) {
-              return {
-                radius: 5,
-                color: '#1f78b4',
-                fillColor: '#ff0000',
-                //radius: getRadius(feature.properties.fuel_source.Hydro)
-              }
-            }
-          })//.addTo(map);
-
+          // create a Leaflet GeoJSON object using the data and add it to the map
           // Add sidebar to the map!
           var sidebar = L.control.sidebar('sidebar').addTo(map); 
-
-          // loop through all the crashes
-          fatalies.eachLayer(function (layer) {
-            // access the name for each
-            var popup=
-              "<p>"
-                     + //"Informatie:"+"<br>"+
-                    // "<ul>"+
-                          "<li>Year: "+layer.feature.properties.JAAR_VKL+"</li>"+
-                          "<li>Provincie: "+layer.feature.properties.PVE_CODE+"</li>"+
-                          "<li>Categorie: "+layer.feature.properties.AP3_CODE+"</li>"+
-                    // "</ul>"+
-              "</p>";
-            // bind that name to a tooltip
-            layer//.bindTooltip(popup);
-          });
-
-        };
-
-        function dataCluster(data) {      
-          const accident = data;     
-            var markers = L.markerClusterGroup();                                 // create new markerClusterGroup    
-            accident.features.forEach(function(feature) {                          // loop through all our signals features    
-              var coords = feature.geometry.coordinates
-              var cat =  feature.properties.AP3_CODE 
-              if (cat =="DOD") { 
-                  marker = L.marker([coords[1], coords[0]], {
-                    icon : iconA
-                  });
-              }
-              else if (cat =="LET") {
-                  marker = L.marker([coords[1], coords[0]], {
-                    icon : iconB
-                  });
-              }
-              else {
-                  marker = L.marker([coords[1], coords[0]], {
-                    icon : iconC
-                  });
-              };
-              marker.bindTooltip("YEAR: " + feature.properties.JAAR_VKL);         // bind a tooltip to the marker
-              markers.addLayer(marker);  
-              //console.log(cat);                                        // add the marker to the markerClusterGroup
-          });
-          map.addLayer(markers);                                                // add the markerClusterGroup to the map
         };
 
         function zoomToFeature(e) {
