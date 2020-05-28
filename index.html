@@ -130,25 +130,16 @@
     <script>
 
       var iconA = L.icon({
-            iconUrl: 'icons/Stop1NormalRed.png'
-             , iconSize: [10, 10], // size of the icon 
-             //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-             popupAnchor: [0, 0]
-                // point from which the popup should open relative to the iconAnchor 
+            iconUrl: 'icons/circle_red.jpg',
+            iconSize: [10, 10], // size of the icon 
       });
       var iconB = L.icon({
-          iconUrl: 'icons/Stop1NormalBlue.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
+          iconUrl: 'icons/circle_blue.jpg',
+          iconSize: [10, 10], // size of the icon 
       });
       var iconC = L.icon({
-          iconUrl: 'icons/Stop1Normal.png'
-            , iconSize: [10, 10], // size of the icon 
-            //iconAnchor: [20, 20], // point of the icon which will correspond to marker's location 
-            popupAnchor: [0, 0]
-              // point from which the popup should open relative to the iconAnchor 
+          iconUrl: 'icons/circle_green.jpg',
+          iconSize: [10, 10], // size of the icon 
       });
 
       var map = L.map("map", {
@@ -175,7 +166,7 @@
       ).addTo(map);
 
 
-        // load Road Crashes geojson file and call function to add data to map
+        // load Utrecht municipal
         $.getJSON("data/clean/gemeenten_utrecht_15.geojson", function (dataPoly) {
           L.geoJson(dataPoly, {
             style: function(feature) {
@@ -187,19 +178,19 @@
               };
             },
             onEachFeature : function(feature, layer) {
-            var countyName = feature.properties.NAME_2;
-            layer.bindTooltip(countyName);
-            layer.on({
-                click: zoomToFeature
-            });
-        }
+                var countyName = feature.properties.NAME_2;
+                layer.bindTooltip(countyName);
+                layer.on({
+                    click: zoomToFeature
+                });
+            }
           }).addTo(map);
         });
 
-        // load Road Crashes geojson file and call function to add data to map
-        // $.getJSON("data/clean/ned2018_4326.geojson", function (data) {
-        $.getJSON("data/clean/verkeersOng_UTR_2016-2018_5.geojson", function (data) {  
+        // load Road Crashes geojson file and call function to add data to map 
+        $.getJSON("data/clean/data-1589838631776_UTRECHT_2015-2018_5.geojson", function (data) {  
             drawMap(data);
+            console.log(data);
         });
 
         function drawMap(data) {
@@ -214,6 +205,7 @@
           };
 
           dataCluster(data);
+          //dataFilter(data);
 
           //===== Filter per Year!!!
           var schade = L.geoJson(data, {
@@ -276,7 +268,8 @@
             }
           })//.addTo(map);
 
-          //===== Filter pet type accident
+
+          //===== Filter per type accident
 
           var schade = L.geoJson(data, {
             pointToLayer: function(feature,latlng){
@@ -323,7 +316,7 @@
               return L.circleMarker(latlng, geojsonMarkerOptions);
             },
             filter: function(feature3) {
-              if(feature3.properties.AP3_CODE=="DOD") {
+              if(feature3.properties.ap3_code=="DOD") {
                 return feature3;
               }
               //console.log(feature3);
@@ -338,33 +331,71 @@
             }
           })//.addTo(map);
 
+
           // Add sidebar to the map!
           var sidebar = L.control.sidebar('sidebar').addTo(map); 
 
           // loop through all the crashes
-          fatalies.eachLayer(function (layer) {
-            // access the name for each
-            var popup=
-              "<p>"
-                     + //"Informatie:"+"<br>"+
-                    // "<ul>"+
-                          "<li>Year: "+layer.feature.properties.JAAR_VKL+"</li>"+
-                          "<li>Provincie: "+layer.feature.properties.PVE_CODE+"</li>"+
-                          "<li>Categorie: "+layer.feature.properties.AP3_CODE+"</li>"+
-                    // "</ul>"+
-              "</p>";
-            // bind that name to a tooltip
-            layer//.bindTooltip(popup);
-          });
+          // fatalies.eachLayer(function (layer) {
+          //   // access the name for each
+          //   var popup=
+          //     "<p>"
+          //            + //"Informatie:"+"<br>"+
+          //           // "<ul>"+
+          //                 "<li>Year: "+layer.feature.properties.jaar_vkl+"</li>"+
+          //                 "<li>Provincie: "+layer.feature.properties.pve_code+"</li>"+
+          //                 "<li>Categorie: "+layer.feature.properties.ap3_code+"</li>"+
+          //           // "</ul>"+
+          //     "</p>";
+          //   // bind that name to a tooltip
+          //   layer//.bindTooltip(popup);
+          // });
 
         };
+
+//===
+
+        // function dataFilter(data) {      
+        //           const accident = data;
+        //           const dataYear = []     
+        //             var markers = L.markerClusterGroup();                                 // create new markerClusterGroup    
+        //             accident.features.forEach(function(feature) {                          // loop through all our signals features    
+        //               var coords = feature.geometry.coordinates
+        //               var cat =  feature.properties.jaar_vkl 
+        //               switch (cat ) {
+        //                 case 2018:
+        //                   marker = L.marker([coords[1], coords[0]], {
+        //                     icon : iconA                           
+        //                   });
+        //                 case 2017:
+        //                   marker = L.marker([coords[1], coords[0]], {
+        //                     icon : iconB
+        //                   })
+        //                 case 2016:
+        //                   marker = L.marker([coords[1], coords[0]], {
+        //                     icon : iconC
+        //                   });
+        //                 case 2015:
+        //                   marker = L.marker([coords[1], coords[0]], {
+        //                     icon : iconA
+        //                 }); 
+        //               }
+        //               console.log(dataYear);
+        //               marker.bindTooltip("YEAR: " + feature.properties.jaar_vkl);         // bind a tooltip to the marker
+        //               markers.addLayer(marker);  
+        //               //console.log(cat);                                        // add the marker to the markerClusterGroup
+        //           });
+        //           map.addLayer(markers);                                         // add the markerClusterGroup to the map
+        //         };
+
+//===
 
         function dataCluster(data) {      
           const accident = data;     
             var markers = L.markerClusterGroup();                                 // create new markerClusterGroup    
-            accident.features.forEach(function(feature) {                          // loop through all our signals features    
+            accident.features.forEach(function(feature) {                         // loop through all our signals features    
               var coords = feature.geometry.coordinates
-              var cat =  feature.properties.AP3_CODE 
+              var cat =  feature.properties.ap3_code 
               if (cat =="DOD") { 
                   marker = L.marker([coords[1], coords[0]], {
                     icon : iconA
@@ -380,11 +411,11 @@
                     icon : iconC
                   });
               };
-              marker.bindTooltip("YEAR: " + feature.properties.JAAR_VKL);         // bind a tooltip to the marker
-              markers.addLayer(marker);  
-              //console.log(cat);                                        // add the marker to the markerClusterGroup
+              marker.bindTooltip("YEAR: " + feature.properties.jaar_vkl);         // bind a tooltip to the marker
+              markers.addLayer(marker);                                           // add the marker to the markerClusterGroup
+              //console.log(cat);                                        
           });
-          map.addLayer(markers);                                                // add the markerClusterGroup to the map
+          map.addLayer(markers);                                                  // add the markerClusterGroup to the map
         };
 
         function zoomToFeature(e) {
