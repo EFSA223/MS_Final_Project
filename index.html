@@ -207,13 +207,15 @@
         }
       }).addTo(map);
 
-      //===== Filter per Year
-      const schade16 = L.geoJson(utrecht18Json, {
+
+      //===== Filter per type accident
+
+      const schadeUms = L.geoJson(utrecht18Json, {
         pointToLayer: function (feature, latlng) {
           return L.circleMarker(latlng, geojsonMarkerOptions);
         },
         filter: function (feature) {
-          if (feature.properties.jaar_vkl == 2016) {
+          if (feature.properties.ap3_code == "UMS") {
             return feature;
           }
           //console.log(feature);
@@ -227,69 +229,6 @@
           }
         }
       }).addTo(map);
-
-      const schade17 = L.geoJson(utrecht18Json, {
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        },
-        filter: function (feature) {
-          if (feature.properties.JAAR_VKL == 2017) {
-            return feature;
-          }
-          //console.log(feature);
-        },
-        style: function (feature) {
-          return {
-            radius: 2,
-            color: '#1f78b4',
-            fillColor: '#3333ff',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
-          }
-        }
-      }) //.addTo(map);
-
-      const schade18 = L.geoJson(utrecht18Json, {
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        },
-        filter: function (feature) {
-          if (feature.properties.JAAR_VKL == 2018) {
-            return feature;
-          }
-          //console.log(feature);
-        },
-        style: function (feature) {
-          return {
-            radius: 2,
-            color: '#1f78b4',
-            fillColor: '#ff0000',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
-          }
-        }
-      }) //.addTo(map);
-
-
-      //===== Filter per type accident
-
-      const schadeUms = L.geoJson(utrecht18Json, {
-        pointToLayer: function (feature, latlng) {
-          return L.circleMarker(latlng, geojsonMarkerOptions);
-        },
-        filter: function (feature) {
-          if (feature.properties.AP3_CODE == "UMS") {
-            return feature;
-          }
-          //console.log(feature);
-        },
-        style: function (feature) {
-          return {
-            radius: 2,
-            color: '#1f78b4',
-            fillColor: '#009933',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
-          }
-        }
-      }) //.addTo(map);
 
       var letsels = L.geoJson(utrecht18Json, {
         pointToLayer: function (feature2, latlng) {
@@ -330,6 +269,27 @@
           }
         }
       }) //.addTo(map);
+
+      // UI element listens for change in year by user
+      // then, when the user makes a change, call a function to update map for new year.
+
+      // example. user selected 2017
+
+      let currentYear = 2017;
+
+      // this will be in a new function to update the map
+      schadeUms.eachLayer(function (layer) {
+
+        // console.log(layer.feature)
+
+        // set a condition and hide or remove ones not select for year
+        if (layer.feature.jaar_vkl != currentYear) {
+          layer.setStyle({
+            opacity: 0
+          })
+        }
+      });
+
 
     }
 
