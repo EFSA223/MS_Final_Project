@@ -179,6 +179,16 @@
 
     function drawMap(utrech15Json, utrecht18Json) {
 
+      // create a Leaflet GeoJSON object using the data and add it to the map
+      var geojsonMarkerOptions = {
+        radius: 2,
+        fillColor: "#142850",
+        color: "#cccccc",
+        weight: 1,
+        opacity: 1,
+        fillOpacity: 0.8
+      };
+
       L.geoJson(utrech15Json, {
         style: function (feature) {
           return {
