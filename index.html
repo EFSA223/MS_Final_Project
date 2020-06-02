@@ -49,6 +49,14 @@
       z-index: 1000;
     } */
 
+    .sliderStyle {
+      width: 94%;
+      height: 20px;
+      border-radius: 2px;
+      background: #f2f0f0;
+      outline: none;
+      opacity: 0.6;
+    }
 
   </style>
 </head>
@@ -56,12 +64,12 @@
 <body>
 
   <!-- ui Year panel -->
-  <div id='year' class='py6 px12 bg-white border border--gray-light round absolute bottom w2 mb60 ml12'>
-    <p class='yaer'>Grade <span>:1</span> <span class='txt-l txt-bold'></span></p>
+  <div id='year' class='yearSqc'>
+    <p class='year'>Year <span>:1</span> <span class='txt-l txt-bold'></span></p>
   </div>
 
   <!-- ui slider -->
-  <div id='slider' class='range w240 bg-white border border--gray-light round-ml px12'>
+  <div id='slider' class='sliderStyle'>
     <input type='range' min="2014" , max="2018" , value="1" , step="1"/>
   </div>
 
@@ -163,7 +171,7 @@
     const utrecht15Request = d3.json('data/clean/gemeenten_utrecht_15.geojson');
 
     // this should probably be a CSV file to reduce file size, and then converted to GeoJSON for mapping
-    const utrecht18Request = d3.json('data/clean/data-1589838631776_UTRECHT_2015-2018_5.geojson');
+    const utrecht18Request = d3.json('data/clean/data-1589838631776_UTRECHT_2015-2018_5b.geojson');
 
     // then use a solution like Promise to wait until the data is loaded
     Promise.all([utrecht15Request, utrecht18Request]).then(function (data) {
