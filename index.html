@@ -10,17 +10,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
 
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
   <!-- symbols in sidebar -->
-
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
   <link rel="stylesheet" href="libs/css/leaflet-sidebar.css" />
-  <!-- Marker Clusters -->
-  <link rel="stylesheet" href="libs/MarkerCluster.Default.css">
-  <!-- <link rel="stylesheet" href="../libs/MarkerCluster.css"> -->
+
   <!-- Sidebar V-2 -->
   <link rel="stylesheet" href="libs/css/leaflet-sidebar.css" />
 
@@ -46,12 +44,28 @@
       width: 260px;
       font-size: 1.3em;
     }
+
+    /* #year {
+      z-index: 1000;
+    } */
+
+
   </style>
 </head>
 
 <body>
-  <!-- <div id="map"></div> -->
 
+  <!-- ui Year panel -->
+  <div id='year' class='py6 px12 bg-white border border--gray-light round absolute bottom w2 mb60 ml12'>
+    <p class='yaer'>Grade <span>:1</span> <span class='txt-l txt-bold'></span></p>
+  </div>
+
+  <!-- ui slider -->
+  <div id='slider' class='range w240 bg-white border border--gray-light round-ml px12'>
+    <input type='range' min="2014" , max="2018" , value="1" , step="1"/>
+  </div>
+
+  <!-- sidebar -->
   <div id="sidebar" class="sidebar collapsed">
     <!-- Nav tabs -->
     <div class="sidebar-tabs">
@@ -111,35 +125,27 @@
         <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
       </div>
     </div>
+      
   </div>
 
+  <!-- map container -->
   <div id="map" class="sidebar-map"></div>
 
   <!--JQuery-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
   <!--D3-->
   <script src="https://d3js.org/d3.v5.min.js"></script>
+
   <!--Leaflet-->
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
+ 
   <!--Sidebar-->
   <script src="libs/js/leaflet-sidebar.js"></script>
 
   <script>
-    // we may not need to use icons here ... if just plain circles
-    var iconA = L.icon({
-      iconUrl: 'icons/circle_red.jpg',
-      iconSize: [10, 10], // size of the icon 
-    });
-    var iconB = L.icon({
-      iconUrl: 'icons/circle_blue.jpg',
-      iconSize: [10, 10], // size of the icon 
-    });
-    var iconC = L.icon({
-      iconUrl: 'icons/circle_green.jpg',
-      iconSize: [10, 10], // size of the icon 
-    });
 
     var map = L.map("map", {
       zoomSnap: 0.1,
@@ -189,6 +195,7 @@
         fillOpacity: 0.8
       };
 
+      // Gemeente polygon!
       L.geoJson(utrech15Json, {
         style: function (feature) {
           return {
@@ -207,9 +214,7 @@
         }
       }).addTo(map);
 
-
-      //===== Filter per type accident
-
+      // Filter per type accident
       const schadeUms = L.geoJson(utrecht18Json, {
         pointToLayer: function (feature, latlng) {
           return L.circleMarker(latlng, geojsonMarkerOptions);
@@ -218,39 +223,33 @@
           if (feature.properties.ap3_code == "UMS") {
             return feature;
           }
-          //console.log(feature);
         },
         style: function (feature) {
           return {
             radius: 2,
-            color: '#1f78b4',
-            fillColor: '#009933',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
+            //color: '#13f030',
+            fillColor: '#13f030',
           }
         }
       }).addTo(map);
-
-      var letsels = L.geoJson(utrecht18Json, {
+      const letsels = L.geoJson(utrecht18Json, {
         pointToLayer: function (feature2, latlng) {
           return L.circleMarker(latlng, geojsonMarkerOptions);
         },
         filter: function (feature2) {
-          if (feature2.properties.AP3_CODE == "LET") {
+          if (feature2.properties.ap3_code == "LET") {
             return feature2;
           }
-          //console.log(feature2);
         },
         style: function (feature2) {
           return {
-            radius: 3,
+            radius: 2,
             color: '#1f78b4',
-            fillColor: '#3333ff',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
+            fillColor: '#1f78b4',
           }
         }
-      }) //.addTo(map);
-
-      var fatalies = L.geoJson(utrecht18Json, {
+      }).addTo(map);
+      const fatalies = L.geoJson(utrecht18Json, {
         pointToLayer: function (feature3, latlng) {
           return L.circleMarker(latlng, geojsonMarkerOptions);
         },
@@ -258,131 +257,72 @@
           if (feature3.properties.ap3_code == "DOD") {
             return feature3;
           }
-          //console.log(feature3);
         },
         style: function (feature3) {
           return {
-            radius: 5,
-            color: '#1f78b4',
+            radius: 3,
+            //color: '#ff0000',
             fillColor: '#ff0000',
-            //radius: getRadius(feature.properties.fuel_source.Hydro)
           }
         }
-      }) //.addTo(map);
-
-      // UI element listens for change in year by user
-      // then, when the user makes a change, call a function to update map for new year.
-
-      // example. user selected 2017
-
-      let currentYear = 2017;
-
-      // this will be in a new function to update the map
-      schadeUms.eachLayer(function (layer) {
-
-        // console.log(layer.feature)
-
-        // set a condition and hide or remove ones not select for year
-        if (layer.feature.jaar_vkl != currentYear) {
-          layer.setStyle({
-            opacity: 0
-          })
-        }
-      });
-
-
+      }).addTo(map);
+     
+      sequenceUI(schadeUms, letsels, fatalies);
     }
-
-
-
-
-
-
-
-
-    // loop through all the crashes
-    // fatalies.eachLayer(function (layer) {
-    //   // access the name for each
-    //   var popup=
-    //     "<p>"
-    //            + //"Informatie:"+"<br>"+
-    //           // "<ul>"+
-    //                 "<li>Year: "+layer.feature.properties.jaar_vkl+"</li>"+
-    //                 "<li>Provincie: "+layer.feature.properties.pve_code+"</li>"+
-    //                 "<li>Categorie: "+layer.feature.properties.ap3_code+"</li>"+
-    //           // "</ul>"+
-    //     "</p>";
-    //   // bind that name to a tooltip
-    //   layer//.bindTooltip(popup);
-    // });
-
-
-    //===
-
-    // function dataFilter(data) {      
-    //           const accident = data;
-    //           const dataYear = []     
-    //             var markers = L.markerClusterGroup();                                 // create new markerClusterGroup    
-    //             accident.features.forEach(function(feature) {                          // loop through all our signals features    
-    //               var coords = feature.geometry.coordinates
-    //               var cat =  feature.properties.jaar_vkl 
-    //               switch (cat ) {
-    //                 case 2018:
-    //                   marker = L.marker([coords[1], coords[0]], {
-    //                     icon : iconA                           
-    //                   });
-    //                 case 2017:
-    //                   marker = L.marker([coords[1], coords[0]], {
-    //                     icon : iconB
-    //                   })
-    //                 case 2016:
-    //                   marker = L.marker([coords[1], coords[0]], {
-    //                     icon : iconC
-    //                   });
-    //                 case 2015:
-    //                   marker = L.marker([coords[1], coords[0]], {
-    //                     icon : iconA
-    //                 }); 
-    //               }
-    //               console.log(dataYear);
-    //               marker.bindTooltip("YEAR: " + feature.properties.jaar_vkl);         // bind a tooltip to the marker
-    //               markers.addLayer(marker);  
-    //               //console.log(cat);                                        // add the marker to the markerClusterGroup
-    //           });
-    //           map.addLayer(markers);                                         // add the markerClusterGroup to the map
-    //         };
-
-    //===
-
-    // function dataCluster(data) {
-    //   const accident = data;
-    //   var markers = L.markerClusterGroup(); // create new markerClusterGroup    
-    //   accident.features.forEach(function (feature) { // loop through all our signals features    
-    //     var coords = feature.geometry.coordinates
-    //     var cat = feature.properties.ap3_code
-    //     if (cat == "DOD") {
-    //       marker = L.marker([coords[1], coords[0]], {
-    //         icon: iconA
-    //       });
-    //     } else if (cat == "LET") {
-    //       marker = L.marker([coords[1], coords[0]], {
-    //         icon: iconB
-    //       });
-    //     } else {
-    //       marker = L.marker([coords[1], coords[0]], {
-    //         icon: iconC
-    //       });
-    //     };
-    //     marker.bindTooltip("YEAR: " + feature.properties.jaar_vkl); // bind a tooltip to the marker
-    //     markers.addLayer(marker); // add the marker to the markerClusterGroup
-    //     //console.log(cat);                                        
-    //   });
-    //   map.addLayer(markers); // add the markerClusterGroup to the map
-    // }
-
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds());
     }
+    function sequenceUI(schadeUms, letsels, fatalies) {
+      //create Leaflet control for the slider
+      var sliderControl = L.control({
+        position: 'bottomleft'
+      });
+
+      sliderControl.onAdd = function (map) {
+        var controls = L.DomUtil.get("slider");
+
+        L.DomEvent.disableScrollPropagation(controls);
+        L.DomEvent.disableClickPropagation(controls);
+        return controls;
+      }
+
+      //select the slider's input and listen for change
+      $('#slider input[type=range]')
+      .on('input', function () {
+        // current value of slider is current grade level
+           var currentYear = this.value;
+        
+           catLayer(schadeUms, currentYear);
+           catLayer(letsels, currentYear);
+           catLayer(fatalies, currentYear)
+
+      });
+      sliderControl.addTo(map);  
+    }
+    function catLayer(catType, currentYear){     
+      catType.eachLayer(function (layer) {
+        var layerYear = layer.feature.properties.jaar_vkl;
+        if (currentYear == 2014) {
+          layer.setStyle({
+            opacity: 1,
+            fillOpacity: 1
+          });
+        }
+        else if(layerYear == currentYear) {
+          layer.setStyle({
+            opacity: 1,
+            fillOpacity: 1
+          })
+        }
+        else {
+          layer.setStyle({
+            opacity: 0,
+            fillOpacity: 0
+          })
+        }
+      });
+    }
+
   </script>
 </body>
 
