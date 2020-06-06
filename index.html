@@ -45,18 +45,54 @@
       font-size: 1.3em;
     }
 
-    /* #year {
-      z-index: 1000;
-    } */
-
     .sliderStyle {
       width: 94%;
-      height: 20px;
+      height: 40px;
       border-radius: 2px;
-      background: #f2f0f0;
+      background: #f2f0f0 ;
       outline: none;
-      opacity: 0.6;
+      opacity: 1;
+      /* padding-top:0; */
+      padding-bottom:25px;
+      margin-bottom: 0px;    
     }
+
+    /* .sliderStyle label {
+      position: inherit;
+    } */
+
+      /* .legend-cat{
+        padding-left:10px
+      } */
+
+    .legend-cat span {
+    float:left;
+    border-radius: 50%;
+    width: 7px;
+    height: 7px;
+    /* background: lawngreen; */
+    /* position: absolute; */
+    }
+
+    #legend {
+      background: white;
+      padding: 15px;
+    }
+
+    .legend-cat label
+    {
+       padding-left:15px;
+    }
+    #bg-DOD{
+      background: #ff0000;
+    }
+    #bg-LET{
+      background: #1f78b4;
+    }
+    #bg-UMS{
+      background: #13f030;
+    }
+  
 
   </style>
 </head>
@@ -64,14 +100,23 @@
 <body>
 
   <!-- ui Year panel -->
-  <div id='year' class='yearSqc'>
-    <p class='year'>Year <span>:1</span> <span class='txt-l txt-bold'></span></p>
-  </div>
+  <div id="border: 1px solid black">Hello World</div>
 
   <!-- ui slider -->
   <div id='slider' class='sliderStyle'>
+    <div>Year: <label>All</label></div>
     <input type='range' min="2014" , max="2018" , value="1" , step="1"/>
   </div>
+
+  <!-- legend -->
+  <div id='legend'>
+      <h3 class='txt-bold mb12 w180'>Crash Legend:</h3>
+      <div class='legend-circles relative w180'>
+        <div class="legend-cat"><span id="bg-DOD" ></span><label >Deadly</label> </div>
+        <div class="legend-cat"><span id="bg-LET" ></span><label >Injury</label> </div>
+        <div class="legend-cat"><span id="bg-UMS" ></span><label >Material damage</label> </div>
+      </div>
+    </div>
 
   <!-- sidebar -->
   <div id="sidebar" class="sidebar collapsed">
@@ -276,6 +321,7 @@
       }).addTo(map);
      
       sequenceUI(schadeUms, letsels, fatalies);
+      drawLeggend();
     }
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds());
@@ -297,9 +343,14 @@
       //select the slider's input and listen for change
       $('#slider input[type=range]')
       .on('input', function () {
-        // current value of slider is current grade level
+        // current value of slider is current year level
            var currentYear = this.value;
-        
+           if(currentYear == '2014'){
+            $('#slider label').html('All');
+           }else {
+            $('#slider label').html(currentYear);
+           }
+          
            catLayer(schadeUms, currentYear);
            catLayer(letsels, currentYear);
            catLayer(fatalies, currentYear)
@@ -329,6 +380,25 @@
           })
         }
       });
+    }
+    
+    function drawLeggend() {  
+      var legendControl = L.control({
+        position: 'bottomright'
+      });
+      
+      // when the control is added to the map
+      legendControl.onAdd = function (map) {
+        // select the legend using id attribute of legend
+        var legend = L.DomUtil.get("legend");
+        // disable scroll and click functionality 
+        L.DomEvent.disableScrollPropagation(legend);
+        L.DomEvent.disableClickPropagation(legend);
+        document.getElementById("legend").style.display="block";
+        // return the selection
+        return legend;
+      }
+      legendControl.addTo(map);
     }
 
   </script>

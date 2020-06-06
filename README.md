@@ -26,11 +26,11 @@ The main geometry I'm going to use is points that shows the location of the acci
 After downloading the data (see **dataStructure.md**) I imported all csv files into a PostgreSQL database and created the table relations. With a sql-query, I made a selection of the data I need and exported it to a csv file, **VerkeersOngevallenNED_2009-2018.csv**.
 QGIS was used to visualize the data and to export to GeoJSON.
 
-[Datastructure](/dataStructure.md)
+[Datastructure](./dataStructure.md)
 
 **Accident locations**
 
-![Fig_11](./images/verOng_11.png)
+![Fig_11](./images/verOng_11.PNG)
 
 For this project I will also use data from the Dutch [Central Bureau for Statistics](https://opendata.cbs.nl/statline/#/CBS/nl/). Data downloaded are 1. Population, 2. Alarms from the fire brigade and 3. the total motor vehicle fleet. The structure of this datasets are the same, with four columns.
 - _code_,      is the code to identify provincies
@@ -55,7 +55,7 @@ HTML, CSS, SVG, JavaScript and leaflet/Mapbox will be use to make the web applic
 
 ### C. Application layout
 
-![*](/images/app_layout02.png)
+![*](./images/app_layout02.png)
 
 ### D. Thematic representation
 
