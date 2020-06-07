@@ -46,37 +46,23 @@
     }
 
     .sliderStyle {
-      width: 94%;
-      height: 40px;
-      border-radius: 2px;
-      background: #f2f0f0 ;
+      width: 100%;
+      height: 50px;
+      background: #f7cb7be8;
       outline: none;
-      opacity: 1;
-      /* padding-top:0; */
-      padding-bottom:25px;
       margin-bottom: 0px;    
     }
 
-    /* .sliderStyle label {
-      position: inherit;
-    } */
-
-      /* .legend-cat{
-        padding-left:10px
-      } */
-
     .legend-cat span {
-    float:left;
-    border-radius: 50%;
-    width: 7px;
-    height: 7px;
-    /* background: lawngreen; */
-    /* position: absolute; */
+      float:left;
+      border-radius: 50%;
+      width: 7px;
+      height: 7px;
     }
 
     #legend {
-      background: white;
-      padding: 15px;
+      background: #f7cb7be8;
+      padding: 10px;
     }
 
     .legend-cat label
@@ -104,13 +90,13 @@
 
   <!-- ui slider -->
   <div id='slider' class='sliderStyle'>
-    <div>Year: <label>All</label></div>
+    <div><strong>Year:</strong> <label>2015 - 2018</label></div>
     <input type='range' min="2014" , max="2018" , value="1" , step="1"/>
   </div>
 
   <!-- legend -->
   <div id='legend'>
-      <h3 class='txt-bold mb12 w180'>Crash Legend:</h3>
+      <h3 class='txt-bold mb12 w180'>Accidents Legend:</h3>
       <div class='legend-circles relative w180'>
         <div class="legend-cat"><span id="bg-DOD" ></span><label >Deadly</label> </div>
         <div class="legend-cat"><span id="bg-LET" ></span><label >Injury</label> </div>
@@ -125,13 +111,13 @@
       <ul role="tablist">
         <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
         <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-        <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-        <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a>
+        <!-- <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li> -->
+        <!-- <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a> -->
         </li>
       </ul>
 
       <ul role="tablist">
-        <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+        <li><a href="#info" role="tab"><i class="fa fa-info"></i></a></li>
       </ul>
     </div>
 
@@ -139,30 +125,27 @@
     <div class="sidebar-content">
       <div class="sidebar-pane" id="home">
         <h1 class="sidebar-header">
-          Road Crashes Utrecht, The Netherland
+          Road Accidents Map of Utrecht
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h1>
 
-        <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a
-            href="http://openlayers.org/">OpenLayers</a>.</p>
+        <p><strong>Interactive Road Accidents Map of Utrecht, The Netherlands.</strong></p>
 
-        <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-          no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-          elitr,
-          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-          no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <p>This web map provides an overview of all traffic accidents from 2015 to 2018.</p>
 
-        <p class="lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-          no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-          elitr,
-          sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-          no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+        <p>How to use this map?</p>
+        <p>
+            The web map open with the province of Utrecht, divided into its municipalities.
+            If you hover the mouse over the polygon municipality you will see the name appear.
+            Click on a municipality, it will zoom in to the relevant municipality, center of the screen.
+            The map shows the accidents type:
+        </p>
+            <ul>1. Red dot: fatal.</ul>
+            <ul>2. Blue dot: with injury.</ul>
+            <ul>3. Green dot: Material damage.</ul>
+        <p>
+            The slider is located at the bottom left of the map. the slider allows you to scroll through the years, from all year, 2015 to 2018.
+        </p>
 
       </div>
 
@@ -170,12 +153,33 @@
         <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
       </div>
 
-      <div class="sidebar-pane" id="messages">
+      <!-- <div class="sidebar-pane" id="messages">
         <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-      </div>
+      </div> -->
 
-      <div class="sidebar-pane" id="settings">
-        <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+      <div class="sidebar-pane" id="info">
+        <h1 class="sidebar-header">Information<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <h3>Data Source</h3>
+        <p>
+            Netherlands Road Accidents reports of the police is linked to the digital road network (the National Road File, NWB).
+            <a href="http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4gqrs90k-vobr-5t59-x726-4x2unrs1vawz">Bestand geRegistreerde Ongevallen Nederland (BRON)</a>
+        </p>
+        <h3>Used Mapping Libraries</h3>
+        <p>
+            <p><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element">HTML Reference</a></p>
+            <p></p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference">CSS Reference</a></p>
+            <p></p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">JavaScript Reference</a></p>
+            <p></p><a href="https://leafletjs.com/">Leaflet</a></p>
+            <p></p><a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
+            <p></p><a href="https://jquery.com/">JQuery library</a></p>
+            <p></p><a href="https://d3js.org/">D3 library</a></p>
+            <p></p><a href="https://github.com/Turbo87/sidebar-v2">Leaflet Sidebar-v2</a></p>
+        </p>
+        <h3>Acknowledgements</h3>
+        <p>
+          I would like to thank my employer for the opportunity to follow this training.
+          And a special thanks to my Assistant Professor mr. Rich Donohue, Boyd Shearer,
+          Mr. Jeff Levy and all fellow students.
       </div>
     </div>
       
@@ -201,6 +205,8 @@
   <script>
 
     var map = L.map("map", {
+      minZoom: 8,
+      maxZoom: 14,
       zoomSnap: 0.1,
       center: [52.119, 5.197], // Utrecht
       zoom: 11
@@ -346,7 +352,7 @@
         // current value of slider is current year level
            var currentYear = this.value;
            if(currentYear == '2014'){
-            $('#slider label').html('All');
+            $('#slider label').html('2015-2018');
            }else {
             $('#slider label').html(currentYear);
            }
