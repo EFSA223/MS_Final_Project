@@ -48,9 +48,9 @@
     .sliderStyle {
       width: 100%;
       height: 50px;
-      background: #f7cb7be8;
+      background: #faeed9e8;
       outline: none;
-      margin-bottom: 0px;    
+      margin-bottom: 15px;  
     }
 
     .legend-cat span {
@@ -61,7 +61,7 @@
     }
 
     #legend {
-      background: #f7cb7be8;
+      background: #faeed9e8;
       padding: 10px;
     }
 
@@ -135,7 +135,7 @@
 
         <p>How to use this map?</p>
         <p>
-            The web map open with the province of Utrecht, divided into its municipalities.
+            The web map open with the county (province) of Utrecht, divided into its municipalities.
             If you hover the mouse over the polygon municipality you will see the name appear.
             Click on a municipality, it will zoom in to the relevant municipality, center of the screen.
             The map shows the accidents type:
@@ -386,8 +386,7 @@
           })
         }
       });
-    }
-    
+    }    
     function drawLeggend() {  
       var legendControl = L.control({
         position: 'bottomright'
