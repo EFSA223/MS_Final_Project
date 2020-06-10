@@ -12,12 +12,11 @@
 
   <!-- symbols in sidebar -->
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-  
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin="" />
-  <link rel="stylesheet" href="libs/css/leaflet-sidebar.css" />
 
   <!-- Sidebar V-2 -->
   <link rel="stylesheet" href="libs/css/leaflet-sidebar.css" />
@@ -48,38 +47,39 @@
     .sliderStyle {
       width: 100%;
       height: 50px;
-      background: #faeed9e8;
+      background: white;
       outline: none;
-      margin-bottom: 15px;  
+      margin-bottom: 15px;
+      padding: 6px 8px;
     }
 
     .legend-cat span {
-      float:left;
+      float: left;
       border-radius: 50%;
       width: 7px;
       height: 7px;
     }
 
     #legend {
-      background: #faeed9e8;
-      padding: 10px;
+      background: white;
+      padding: 0 10px 6px;
     }
 
-    .legend-cat label
-    {
-       padding-left:15px;
+    .legend-cat label {
+      padding-left: 15px;
     }
-    #bg-DOD{
+
+    #bg-DOD {
       background: #ff0000;
     }
-    #bg-LET{
+
+    #bg-LET {
       background: #1f78b4;
     }
-    #bg-UMS{
+
+    #bg-UMS {
       background: #13f030;
     }
-  
-
   </style>
 </head>
 
@@ -91,18 +91,18 @@
   <!-- ui slider -->
   <div id='slider' class='sliderStyle'>
     <div><strong>Year:</strong> <label>2015 - 2018</label></div>
-    <input type='range' min="2014" , max="2018" , value="1" , step="1"/>
+    <input type='range' min="2014" , max="2018" , value="1" , step="1" />
   </div>
 
   <!-- legend -->
   <div id='legend'>
-      <h3 class='txt-bold mb12 w180'>Accidents Legend:</h3>
-      <div class='legend-circles relative w180'>
-        <div class="legend-cat"><span id="bg-DOD" ></span><label >Deadly</label> </div>
-        <div class="legend-cat"><span id="bg-LET" ></span><label >Injury</label> </div>
-        <div class="legend-cat"><span id="bg-UMS" ></span><label >Material damage</label> </div>
-      </div>
+    <h3 class='txt-bold mb12 w180'>Type of accident</h3>
+    <div class='legend-circles relative w180'>
+      <div class="legend-cat"><span id="bg-DOD"></span><label>Deadly</label> </div>
+      <div class="legend-cat"><span id="bg-LET"></span><label>Injury</label> </div>
+      <div class="legend-cat"><span id="bg-UMS"></span><label>Material damage</label> </div>
     </div>
+  </div>
 
   <!-- sidebar -->
   <div id="sidebar" class="sidebar collapsed">
@@ -129,22 +129,25 @@
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h1>
 
-        <p><strong>Interactive Road Accidents Map of Utrecht, The Netherlands.</strong></p>
+        <h2>Interactive Road Accidents Map of Utrecht, The Netherlands.</h2>
 
         <p>This web map provides an overview of all traffic accidents from 2015 to 2018.</p>
 
-        <p>How to use this map?</p>
+        <h3>How to use this map?</h3>
         <p>
-            The web map open with the county (province) of Utrecht, divided into its municipalities.
-            If you hover the mouse over the polygon municipality you will see the name appear.
-            Click on a municipality, it will zoom in to the relevant municipality, center of the screen.
-            The map shows the accidents type:
+          The web map open with the county (province) of Utrecht, divided into its municipalities.
+          If you hover the mouse over the polygon municipality you will see the name appear.
+          Click on a municipality, it will zoom in to the relevant municipality, center of the screen.
+          The map shows the accidents type:
         </p>
-            <ul>1. Red dot: fatal.</ul>
-            <ul>2. Blue dot: with injury.</ul>
-            <ul>3. Green dot: Material damage.</ul>
+        <ul>
+          <li>1. Red dot: fatal.</li>
+          <li>2. Blue dot: with injury.</li>
+          <li>3. Green dot: Material damage.</li>
+        </ul>
         <p>
-            The slider is located at the bottom left of the map. the slider allows you to scroll through the years, from all year, 2015 to 2018.
+          The slider is located at the bottom left of the map. the slider allows you to scroll through the years, from
+          all year, 2015 to 2018.
         </p>
 
       </div>
@@ -161,33 +164,36 @@
         <h1 class="sidebar-header">Information<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
         <h3>Data Source</h3>
         <p>
-            Netherlands Road Accidents reports of the police is linked to the digital road network (the National Road File, NWB).
-            <a href="http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4gqrs90k-vobr-5t59-x726-4x2unrs1vawz">Bestand geRegistreerde Ongevallen Nederland (BRON)</a>
+          Netherlands Road Accidents reports of the police is linked to the digital road network (the National Road
+          File, NWB).
+          <a
+            href="http://www.nationaalgeoregister.nl/geonetwork/srv/dut/catalog.search#/metadata/4gqrs90k-vobr-5t59-x726-4x2unrs1vawz">Bestand
+            geRegistreerde Ongevallen Nederland (BRON)</a>
         </p>
         <h3>Technology Stack</h3>
-        <p>
-            <p>HTML  <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"> Reference</a></p>
-            <p>CSS  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference"> Reference</a></p>
-            <p>JavaScript  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"> Reference</a></p>
-            <p>DEV Editor<a href="https://code.visualstudio.com/">Visual Studio Code</a></p>
-            <p>Browser<a href="https://www.google.com/chrome/">Chrome</a></p>
-        </p>
+        <ul>
+          <li>HTML (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element"> Reference</a>)</li>
+          <li>CSS (<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference"> Reference</a>)</li>
+          <li>JavaScript (<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"> Reference</a>)</li>
+          <li>Code editor: <a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+          <li>Development and testing browser: <a href="https://www.google.com/chrome/">Chrome</a></li>
+        </ul>
         <h3>Mapping Libraries</h3>
-        <p>
-            <p><a href="https://leafletjs.com/">Leaflet</a></p>        
-            <p><a href="https://jquery.com/">JQuery library</a></p>
-            <p><a href="https://d3js.org/">D3 library</a></p>
-            <p><a href="https://github.com/Turbo87/sidebar-v2">Leaflet Sidebar-v2</a></p>
-        </p>
+        <ul>
+          <li><a href="https://leafletjs.com/">Leaflet</a></li>
+          <li><a href="https://jquery.com/">JQuery library</a></li>
+          <li><a href="https://d3js.org/">D3 library</a></li>
+          <li><a href="https://github.com/Turbo87/sidebar-v2">Leaflet Sidebar-v2</a></li>
+        </ul>
         <h3>Acknowledgements</h3>
         <p>
           I would like to thank my employer for the opportunity to follow this training.
-          And a special thanks to my Assistant Professor mr. Rich Donohue, Boyd Shearer,
-          Mr. Jeff Levy and all fellow students.
+          And a special thanks to Rich Donohue, Boyd Shearer,
+          Jeff Levy and all fellow students.
         </p>
       </div>
     </div>
-      
+
   </div>
 
   <!-- map container -->
@@ -203,12 +209,11 @@
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
- 
+
   <!--Sidebar-->
   <script src="libs/js/leaflet-sidebar.js"></script>
 
   <script>
-
     var map = L.map("map", {
       minZoom: 8,
       maxZoom: 14,
@@ -330,13 +335,15 @@
           }
         }
       }).addTo(map);
-     
+
       sequenceUI(schadeUms, letsels, fatalies);
       drawLeggend();
     }
+
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds());
     }
+
     function sequenceUI(schadeUms, letsels, fatalies) {
       //create Leaflet control for the slider
       var sliderControl = L.control({
@@ -353,23 +360,24 @@
 
       //select the slider's input and listen for change
       $('#slider input[type=range]')
-      .on('input', function () {
-        // current value of slider is current year level
-           var currentYear = this.value;
-           if(currentYear == '2014'){
+        .on('input', function () {
+          // current value of slider is current year level
+          var currentYear = this.value;
+          if (currentYear == '2014') {
             $('#slider label').html('2015-2018');
-           }else {
+          } else {
             $('#slider label').html(currentYear);
-           }
-          
-           catLayer(schadeUms, currentYear);
-           catLayer(letsels, currentYear);
-           catLayer(fatalies, currentYear)
+          }
 
-      });
-      sliderControl.addTo(map);  
+          catLayer(schadeUms, currentYear);
+          catLayer(letsels, currentYear);
+          catLayer(fatalies, currentYear)
+
+        });
+      sliderControl.addTo(map);
     }
-    function catLayer(catType, currentYear){     
+
+    function catLayer(catType, currentYear) {
       catType.eachLayer(function (layer) {
         var layerYear = layer.feature.properties.jaar_vkl;
         if (currentYear == 2014) {
@@ -377,26 +385,25 @@
             opacity: 1,
             fillOpacity: 1
           });
-        }
-        else if(layerYear == currentYear) {
+        } else if (layerYear == currentYear) {
           layer.setStyle({
             opacity: 1,
             fillOpacity: 1
           })
-        }
-        else {
+        } else {
           layer.setStyle({
             opacity: 0,
             fillOpacity: 0
           })
         }
       });
-    }    
-    function drawLeggend() {  
+    }
+
+    function drawLeggend() {
       var legendControl = L.control({
         position: 'bottomright'
       });
-      
+
       // when the control is added to the map
       legendControl.onAdd = function (map) {
         // select the legend using id attribute of legend
@@ -404,13 +411,12 @@
         // disable scroll and click functionality 
         L.DomEvent.disableScrollPropagation(legend);
         L.DomEvent.disableClickPropagation(legend);
-        document.getElementById("legend").style.display="block";
+        document.getElementById("legend").style.display = "block";
         // return the selection
         return legend;
       }
       legendControl.addTo(map);
     }
-
   </script>
 </body>
 
