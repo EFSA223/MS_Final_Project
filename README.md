@@ -70,5 +70,5 @@ HTML, CSS, SVG, JavaScript and leaflet were use to make the web application. Dif
 ### E. User interaction
 When opening or starting the application a standard map will project the type of accidents (Fatal, Injury and Properties damge). The user true scrolling the slidercontrol will interact with the web application. Selecting different parameters allows targeted filtering. The basic functions are also available to the users. Pan / Zoom and click on function to get more information.
 
-### G. Conclusion
+### F. Conclusion
 Traffic accidents remain a current topic. Governments around the world have taken steps to make traffic as safe as possible. But the main cause of most accidents remains the human factor. By providing as much information as possible about the status of road safety, the accidents can become less and less.
