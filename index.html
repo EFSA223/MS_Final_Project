@@ -27,6 +27,30 @@
       margin: 0;
       padding: 0;
     }
+    
+    header {
+      padding: 6px 10%;
+    }
+
+		h1 {
+			position: absolute;
+			margin-top: 0;
+			top: 10px;
+			left: 32%;
+			font-size: 2em;
+			font-family: "Lora", serif;
+			letter-spacing: .04em;
+			padding: 10px 15px;
+			background: rgba(256, 256, 256, .4);
+			border: 1px solid grey;
+			border-radius: 10px;
+			z-index: 1000;
+		}    
+
+    /* h2 {
+      display: inline-block;
+      color: #001323;
+    } */
 
     html,
     body,
@@ -85,6 +109,10 @@
 
 <body>
 
+  <header>
+      <h1>Interactive Road Accidents Map of Utrecht</h1>
+  </header>
+
   <!-- ui Year panel -->
   <div id="border: 1px solid black">Hello World</div>
 
@@ -110,7 +138,7 @@
     <div class="sidebar-tabs">
       <ul role="tablist">
         <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-        <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+        <!-- <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li> -->
         <!-- <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li> -->
         <!-- <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a> -->
         </li>
@@ -124,12 +152,12 @@
     <!-- Tab panes -->
     <div class="sidebar-content">
       <div class="sidebar-pane" id="home">
-        <h1 class="sidebar-header">
+        <h2 class="sidebar-header">
           Road Accidents Map of Utrecht
           <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
-        </h1>
+        </h2>
 
-        <h2>Interactive Road Accidents Map of Utrecht, The Netherlands.</h2>
+        <h3>Interactive Road Accidents Map of Utrecht, The Netherlands.</h3>
 
         <p>This web map provides an overview of all traffic accidents from 2015 to 2018.</p>
 
@@ -152,16 +180,16 @@
 
       </div>
 
-      <div class="sidebar-pane" id="profile">
-        <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-      </div>
+      <!-- <div class="sidebar-pane" id="profile">
+        <h2 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h2>
+      </div> -->
 
       <!-- <div class="sidebar-pane" id="messages">
         <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
       </div> -->
 
       <div class="sidebar-pane" id="info">
-        <h1 class="sidebar-header">Information<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+        <h2 class="sidebar-header">Information<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h2>
         <h3>Data Source</h3>
         <p>
           Netherlands Road Accidents reports of the police is linked to the digital road network (the National Road
@@ -190,6 +218,11 @@
           I would like to thank my employer for the opportunity to follow this training.
           And a special thanks to Rich Donohue, Boyd Shearer,
           Jeff Levy and all fellow students.
+        </p>
+        <h3>About</h3>
+        <p>
+          <li>Map authored by <a class='link' href='https://efsa223.github.io/'>Etienne Sambo</a>  @June2020</li>
+          <li><a class='link' href='https://newmapsplus.as.uky.edu/'>NewMapPlus,</a> University of Kentucky</li>
         </p>
       </div>
     </div>
@@ -229,7 +262,7 @@
     }).addTo(map);
 
     // make multiple requests for all your data first
-    const utrecht15Request = d3.json('data/clean/gemeenten_utrecht_15.geojson');
+    const utrecht15Request = d3.json('data/clean/gemUtrecht_04.geojson');
 
     // this should probably be a CSV file to reduce file size, and then converted to GeoJSON for mapping
     const utrecht18Request = d3.json('data/clean/data-1589838631776_UTRECHT_2015-2018_5b.geojson');
@@ -275,8 +308,17 @@
           };
         },
         onEachFeature: function (feature, layer) {
+          
           var countyName = feature.properties.NAME_2;
+          // var countTOT = feature.properties.countTOT;
+          // var countDOD = feature.properties.countDOD;
+          // var countLET = feature.properties.countLET;
+          // var countUMS = feature.properties.countUMS;
+          
           layer.bindTooltip(countyName);
+         
+         
+         
           layer.on({
             click: zoomToFeature
           });
@@ -340,8 +382,34 @@
       drawLeggend();
     }
 
+    function highlightFeature(e) {
+      var layer = e.target;
+
+      layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+      });
+
+      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+      }
+
+      info.update(layer.feature.properties);
+    }
+
+    var geojson;
+
+    function resetHighlight(e) {
+      geojson.resetStyle(e.target);
+      info.update();
+    }
+
     function zoomToFeature(e) {
       map.fitBounds(e.target.getBounds());
+      mouseover: highlightFeature();
+			// mouseout: resetHighlight();
     }
 
     function sequenceUI(schadeUms, letsels, fatalies) {
