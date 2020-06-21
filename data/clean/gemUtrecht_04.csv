@@ -1,34 +1,34 @@
 ID_2,NAME_2,TYPE_2,ENGTYPE_2,pop,countTOT,countDOD,count2018_DOD,count2017_DOD,count2016_DOD,count2015_DOD,countLET,count2018_LET,count2017_LET,count2016_LET,count2015_LET,countUMS,count2018_UMS,count2017_UMS,count2016_UMS,count2015_UMS
-"354",Abcoude,Gemeente,Municipality,"8567",96,0,0,0,0,0,44,8,22,8,6,52,18,18,8,8
-"355",Amerongen,Gemeente,Municipality,"49515",77,0,0,0,0,0,36,10,10,10,6,41,19,11,6,5
-"356",Amersfoort,Gemeente,Municipality,"156286",2106,13,4,5,3,1,833,196,183,223,231,1260,418,324,317,201
-"357",Baarn,Gemeente,Municipality,"24767",269,0,0,0,0,0,106,20,20,35,31,163,46,48,33,36
-"358",Breukelen,Gemeente,Municipality,"14635",240,3,0,3,0,0,110,39,22,25,24,127,45,23,30,29
-"359",Bunnik,Gemeente,Municipality,"15192",191,2,1,1,0,0,88,27,26,16,19,101,21,29,27,24
-"360",Bunschoten,Gemeente,Municipality,"21576",169,6,3,3,0,0,85,17,11,31,26,78,25,24,14,15
-"361",De Bilt,Gemeente,Municipality,"42825",434,5,0,0,5,0,206,59,49,44,54,223,71,61,47,44
-"362",De Ronde Venen,Gemeente,Municipality,"44059",474,5,0,0,3,2,201,38,36,65,62,268,81,80,55,52
-"363",Doorn,Gemeente,Municipality,"9880",128,0,0,0,0,0,58,16,15,9,18,70,10,23,26,11
-"364",Driebergen-Rijsenburg,Gemeente,Municipality,"18570",164,1,0,0,1,0,83,20,17,33,13,80,36,17,16,11
-"365",Eemnes,Gemeente,Municipality,"9113",100,4,1,2,0,1,35,10,6,3,16,61,20,12,11,18
-"366",Houten,Gemeente,Municipality,"49911",354,3,1,0,0,2,178,37,53,32,56,173,56,43,36,38
-"367",IJsselstein,Gemeente,Municipality,"34160",300,6,0,1,2,3,137,41,30,36,30,157,59,33,32,33
-"368",Leersum,Gemeente,Municipality,"49515",115,3,2,0,0,1,60,16,12,22,10,52,15,17,12,8
-"369",Leusden,Gemeente,Municipality,"30030",239,3,0,2,1,0,121,36,25,21,39,115,37,27,31,20
-"370",Loenen,Gemeente,Municipality,"3066",93,1,0,1,0,0,35,7,12,2,14,57,14,10,14,19
-"371",Lopik,Gemeente,Municipality,"14473",156,0,0,0,0,0,74,17,16,11,30,82,24,21,19,18
-"372",Maarn,Gemeente,Municipality,"4651",137,1,0,0,1,0,60,16,9,19,16,76,30,19,18,9
-"373",Maarssen,Gemeente,Municipality,"15665",288,1,1,0,0,0,149,37,26,39,47,138,44,34,32,28
-"374",Montfoort,Gemeente,Municipality,"13996",127,1,1,0,0,0,58,13,15,15,15,68,13,20,11,24
-"375",Nieuwegein,Gemeente,Municipality,"63036",761,4,2,0,0,2,356,100,67,96,93,401,134,108,84,75
-"376",Oudewater,Gemeente,Municipality,"10201",92,0,0,0,0,0,51,11,17,16,7,41,10,13,10,8
-"377",Renswoude,Gemeente,Municipality,"5259",72,0,0,0,0,0,35,12,4,7,12,37,2,11,13,11
-"378",Rhenen,Gemeente,Municipality,"20004",275,4,1,1,1,1,115,37,29,18,31,156,36,41,39,40
-"379",Soest,Gemeente,Municipality,"46194",415,4,2,1,1,0,198,32,48,48,70,213,55,50,49,59
-"380",Utrecht,Gemeente,Municipality,"352866",5175,27,12,4,4,7,2414,562,557,616,679,2734,765,803,577,589
-"381",Veenendaal,Gemeente,Municipality,"65589",637,4,3,1,0,0,292,65,98,58,71,341,98,98,97,48
-"382",Vianen,Gemeente,Municipality,"20423",0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
-"383",Wijk bij Duurstede,Gemeente,Municipality,"23762",156,3,1,0,2,0,83,27,13,21,22,70,21,19,17,13
-"384",Woerden,Gemeente,Municipality,"52199",769,2,1,1,0,0,382,87,85,108,102,385,116,129,76,64
-"385",Woudenberg,Gemeente,Municipality,"13166",119,1,0,0,1,0,54,11,17,13,13,64,26,15,9,14
-"386",Zeist,Gemeente,Municipality,"63933",576,6,0,6,0,0,251,70,49,67,65,319,88,106,64,61
+354,Abcoude,Gemeente,Municipality,8567,96,0,0,0,0,0,44,8,22,8,6,52,18,18,8,8
+355,Amerongen,Gemeente,Municipality,49515,77,0,0,0,0,0,36,10,10,10,6,41,19,11,6,5
+356,Amersfoort,Gemeente,Municipality,156286,2106,13,4,5,3,1,833,196,183,223,231,1260,418,324,317,201
+357,Baarn,Gemeente,Municipality,24767,269,0,0,0,0,0,106,20,20,35,31,163,46,48,33,36
+358,Breukelen,Gemeente,Municipality,14635,240,3,0,3,0,0,110,39,22,25,24,127,45,23,30,29
+359,Bunnik,Gemeente,Municipality,15192,191,2,1,1,0,0,88,27,26,16,19,101,21,29,27,24
+360,Bunschoten,Gemeente,Municipality,21576,169,6,3,3,0,0,85,17,11,31,26,78,25,24,14,15
+361,De Bilt,Gemeente,Municipality,42825,434,5,0,0,5,0,206,59,49,44,54,223,71,61,47,44
+362,De Ronde Venen,Gemeente,Municipality,44059,474,5,0,0,3,2,201,38,36,65,62,268,81,80,55,52
+363,Doorn,Gemeente,Municipality,9880,128,0,0,0,0,0,58,16,15,9,18,70,10,23,26,11
+364,Driebergen-Rijsenburg,Gemeente,Municipality,18570,164,1,0,0,1,0,83,20,17,33,13,80,36,17,16,11
+365,Eemnes,Gemeente,Municipality,9113,100,4,1,2,0,1,35,10,6,3,16,61,20,12,11,18
+366,Houten,Gemeente,Municipality,49911,354,3,1,0,0,2,178,37,53,32,56,173,56,43,36,38
+367,IJsselstein,Gemeente,Municipality,34160,300,6,0,1,2,3,137,41,30,36,30,157,59,33,32,33
+368,Leersum,Gemeente,Municipality,49515,115,3,2,0,0,1,60,16,12,22,10,52,15,17,12,8
+369,Leusden,Gemeente,Municipality,30030,239,3,0,2,1,0,121,36,25,21,39,115,37,27,31,20
+370,Loenen,Gemeente,Municipality,3066,93,1,0,1,0,0,35,7,12,2,14,57,14,10,14,19
+371,Lopik,Gemeente,Municipality,14473,156,0,0,0,0,0,74,17,16,11,30,82,24,21,19,18
+372,Maarn,Gemeente,Municipality,4651,137,1,0,0,1,0,60,16,9,19,16,76,30,19,18,9
+373,Maarssen,Gemeente,Municipality,15665,288,1,1,0,0,0,149,37,26,39,47,138,44,34,32,28
+374,Montfoort,Gemeente,Municipality,13996,127,1,1,0,0,0,58,13,15,15,15,68,13,20,11,24
+375,Nieuwegein,Gemeente,Municipality,63036,761,4,2,0,0,2,356,100,67,96,93,401,134,108,84,75
+376,Oudewater,Gemeente,Municipality,10201,92,0,0,0,0,0,51,11,17,16,7,41,10,13,10,8
+377,Renswoude,Gemeente,Municipality,5259,72,0,0,0,0,0,35,12,4,7,12,37,2,11,13,11
+378,Rhenen,Gemeente,Municipality,20004,275,4,1,1,1,1,115,37,29,18,31,156,36,41,39,40
+379,Soest,Gemeente,Municipality,46194,415,4,2,1,1,0,198,32,48,48,70,213,55,50,49,59
+380,Utrecht,Gemeente,Municipality,352866,5175,27,12,4,4,7,2414,562,557,616,679,2734,765,803,577,589
+381,Veenendaal,Gemeente,Municipality,65589,637,4,3,1,0,0,292,65,98,58,71,341,98,98,97,48
+382,Vianen,Gemeente,Municipality,20423,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+383,Wijk bij Duurstede,Gemeente,Municipality,23762,156,3,1,0,2,0,83,27,13,21,22,70,21,19,17,13
+384,Woerden,Gemeente,Municipality,52199,769,2,1,1,0,0,382,87,85,108,102,385,116,129,76,64
+385,Woudenberg,Gemeente,Municipality,13166,119,1,0,0,1,0,54,11,17,13,13,64,26,15,9,14
+386,Zeist,Gemeente,Municipality,63933,576,6,0,6,0,0,251,70,49,67,65,319,88,106,64,61
